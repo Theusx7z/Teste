@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Brincadeira: Vamo fazer neném?</title>
+<title>Brincadeira: Vai me da o Cu hoje?</title>
 <style>
   body, html {
     height: 100%;
@@ -66,7 +66,7 @@
 <body>
 
 <div class="container">
-  <h1>Vamo fazer neném hoje?</h1>
+  <h1>Vai me da o Cu hoje?</h1>
   <button id="sim">Sim</button>
   <button id="nao">Não</button>
 </div>
@@ -79,7 +79,7 @@
   const maxClicks = 10;
 
   const whatsappNumber = "5518996377806";
-  const whatsappMessage = encodeURIComponent("Oi! Consegui clicar 10 vezes no SIM! ❤️");
+  const whatsappMessage = encodeURIComponent("*Me Cham De Lagartixa, e Me Taca Na Parede🦎");
 
   function moveSimButton() {
     const containerRect = container.getBoundingClientRect();
@@ -107,7 +107,7 @@
   });
 
   naoBtn.addEventListener('click', () => {
-    alert("É pegadinha, vamos sim! 😄❤️");
+    alert("É Obvio Que Sim🙂‍↔️");
     const url = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     window.open(url, '_blank');
   });
