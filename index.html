@@ -1,120 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Painel Hacker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consulta de Dados</title>
   <style>
+    /* Estilo geral da página */
     body {
-      background-color: #0d0d0d;
-      color: #00ff88;
-      font-family: 'Courier New', monospace;
       margin: 0;
       padding: 0;
+      font-family: 'Courier New', monospace;
+      background-color: #0d0d0d;
+      color: #00ffcc;
     }
 
     header {
-      background-color: #111;
       text-align: center;
       padding: 20px;
-      border-bottom: 2px solid #00ff88;
+      background-color: #000;
+      border-bottom: 2px solid #00ffcc;
     }
 
     header h1 {
       margin: 0;
-      color: #00ff88;
-      font-size: 28px;
+      font-size: 24px;
     }
 
-    .painel {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
       padding: 20px;
+      background-color: #111;
+      border: 1px solid #00ffcc;
+      border-radius: 8px;
     }
 
-    .bloco {
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    input {
+      padding: 10px;
+      border: none;
       background-color: #1a1a1a;
-      border: 1px solid #00ff88;
-      border-radius: 6px;
-      margin: 10px;
-      width: 250px;
-      padding: 15px;
-      transition: transform 0.3s;
+      color: #00ffcc;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
     }
 
-    .bloco:hover {
-      transform: scale(1.05);
-      background-color: #262626;
+    button:hover {
+      background-color: #00bfa6;
     }
 
-    .bloco h3 {
-      margin-top: 0;
-      color: #00ffcc;
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #0f0f0f;
+      border: 1px solid #00ffcc;
+      border-radius: 8px;
+      display: none;
     }
 
-    .bloco p {
-      font-size: 14px;
-      color: #aaa;
+    .resultado p {
+      margin: 5px 0;
     }
 
-    .botao {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #00ff88;
-      color: #000;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .botao:hover {
-      background-color: #00cc66;
+    @media screen and (max-width: 600px) {
+      .container {
+        margin: 20px;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🔍 Consulta de Dados Pessoais</h1>
+  </header>
 
-<header>
-  <h1>🛠 Painel Hacker - Terminal Virtual</h1>
-</header>
+  <div class="container">
+    <label for="busca">Digite o CPF ou Nome Completo:</label>
+    <input type="text" id="busca" placeholder="Ex: 123.456.789-00 ou João Silva">
+    <button onclick="consultar()">Consultar</button>
 
-<div class="painel">
-
-  <div class="bloco" onclick="alert('Função: Consulta de Banco')">
-    <h3>Consulta de Banco</h3>
-    <p>Acessar dados bancários de demonstração.</p>
-    <a href="#" class="botao">Executar</a>
+    <div class="resultado" id="resultado">
+      <h3>Resultado da Consulta:</h3>
+      <p><strong>Nome:</strong> João Pedro da Silva</p>
+      <p><strong>CPF:</strong> 123.456.789-00</p>
+      <p><strong>RG:</strong> 12.345.678-9</p>
+      <p><strong>Nascimento:</strong> 15/04/1990</p>
+      <p><strong>Nome da Mãe:</strong> Maria Lúcia da Silva</p>
+      <p><strong>Nome do Pai:</strong> Carlos Alberto da Silva</p>
+      <p><strong>Endereço:</strong> Rua das Flores, 123 - Centro - SP</p>
+      <p><strong>Celular:</strong> (11) 91234-5678</p>
+      <p><strong>Email:</strong> joaopedro90@gmail.com</p>
+      <p><strong>Situação:</strong> Regular</p>
+    </div>
   </div>
 
-  <div class="bloco" onclick="alert('Função: Validador de CPF')">
-    <h3>Validador de CPF</h3>
-    <p>Valide números de CPF automaticamente.</p>
-    <a href="#" class="botao">Validar</a>
-  </div>
+  <script>
+    // Função chamada ao clicar no botão "Consultar"
+    function consultar() {
+      const campo = document.getElementById("busca").value;
 
-  <div class="bloco" onclick="alert('Função: Gerador de IP')">
-    <h3>Gerador de IP</h3>
-    <p>Simule IPs de redes para testes técnicos.</p>
-    <a href="#" class="botao">Gerar IP</a>
-  </div>
+      if (campo.trim() === "") {
+        alert("Por favor, digite um CPF ou Nome.");
+        return;
+      }
 
-  <div class="bloco" onclick="alert('Função: Painel Admin')">
-    <h3>Painel Admin</h3>
-    <p>Acesso total ao painel administrativo.</p>
-    <a href="#" class="botao">Acessar</a>
-  </div>
-
-  <div class="bloco" onclick="alert('Função: Exit do Script')">
-    <h3>Sair</h3>
-    <p>Finaliza a sessão atual do painel.</p>
-    <a href="#" class="botao">Sair</a>
-  </div>
-
-</div>
-
+      // Simula exibição dos dados após consulta
+      document.getElementById("resultado").style.display = "block";
+    }
+  </script>
 </body>
 </html>
