@@ -1,127 +1,411 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Consulta de Dados</title>
-  <style>
-    /* Estilo geral da página */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Courier New', monospace;
-      background-color: #0d0d0d;
-      color: #00ffcc;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Urso Apaixonado - Animação</title>
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body, html {
+    height: 100%;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 
-    header {
-      text-align: center;
-      padding: 20px;
-      background-color: #000;
-      border-bottom: 2px solid #00ffcc;
-    }
+  .scene {
+    position: relative;
+    width: 400px;
+    height: 300px;
+  }
 
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
+  /* --- Urso Masculino --- */
+  .bear-male {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 140px;
+    height: 180px;
+    background: #5C3A21;
+    border-radius: 90px 90px 60px 60px;
+    box-shadow: inset -10px -10px 10px #422a12;
+    animation: breathe 3s ease-in-out infinite;
+  }
+  /* Cabeça */
+  .bear-male::before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    background: #5C3A21;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: inset -5px -5px 8px #422a12;
+    z-index: 2;
+  }
+  /* Orelhas */
+  .bear-male::after {
+    content: "";
+    position: absolute;
+    top: -110px;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    background: #3e2611;
+    border-radius: 50%;
+    box-shadow: 80px 0 #3e2611;
+    z-index: 3;
+  }
 
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #111;
-      border: 1px solid #00ffcc;
-      border-radius: 8px;
-    }
+  /* Urso Feminino */
+  .bear-female {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 140px;
+    height: 180px;
+    background: #a05a5a;
+    border-radius: 90px 90px 60px 60px;
+    box-shadow: inset -10px -10px 15px #733a3a;
+    animation: breathe 3s ease-in-out infinite;
+  }
+  .bear-female::before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    background: #a05a5a;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: inset -5px -5px 8px #733a3a;
+    z-index: 2;
+  }
+  .bear-female::after {
+    content: "";
+    position: absolute;
+    top: -110px;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    background: #6b3f3f;
+    border-radius: 50%;
+    box-shadow: 80px 0 #6b3f3f;
+    z-index: 3;
+  }
 
-    label, input, button {
-      display: block;
-      width: 100%;
-      margin-bottom: 15px;
-    }
+  /* Arma do urso */
+  .gun {
+    position: absolute;
+    bottom: 60px;
+    left: 120px;
+    width: 70px;
+    height: 20px;
+    background: #333;
+    border-radius: 8px 3px 3px 8px;
+    box-shadow: 0 0 8px #222 inset;
+    transform-origin: left center;
+    animation: aim 3s ease-in-out forwards;
+  }
+  .gun::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: -15px;
+    width: 15px;
+    height: 14px;
+    background: #555;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 2px 5px #111 inset;
+  }
 
-    input {
-      padding: 10px;
-      border: none;
-      background-color: #1a1a1a;
-      color: #00ffcc;
-      font-size: 16px;
-      border-radius: 5px;
+  /* Animação do urso respirando */
+  @keyframes breathe {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: inset -10px -10px 10px #422a12;
     }
+    50% {
+      transform: scale(1.03);
+      box-shadow: inset -15px -15px 15px #3a260f;
+    }
+  }
 
-    button {
-      padding: 12px;
-      background-color: #00ffcc;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+  /* Animação do cano da arma mirando */
+  @keyframes aim {
+    0% {
+      transform: rotate(0deg);
     }
+    50%, 100% {
+      transform: rotate(-10deg);
+    }
+  }
 
-    button:hover {
-      background-color: #00bfa6;
+  /* Coração disparado */
+  .heart {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: red;
+    transform: rotate(-45deg);
+    animation: shootHeart 3s forwards;
+    z-index: 10;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: red;
+    border-radius: 50%;
+  }
+  .heart::before {
+    top: -12.5px;
+    left: 0;
+  }
+  .heart::after {
+    top: 0;
+    left: 12.5px;
+  }
+  @keyframes shootHeart {
+    0% {
+      opacity: 1;
+      transform: translate(0,0) rotate(-45deg) scale(1);
     }
+    100% {
+      opacity: 0;
+      transform: translate(280px, -130px) rotate(-45deg) scale(0.3);
+    }
+  }
 
-    .resultado {
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #0f0f0f;
-      border: 1px solid #00ffcc;
-      border-radius: 8px;
-      display: none;
-    }
+  /* Corações em volta da ursa */
+  .hearts-around {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    top: -40px;
+    right: 0;
+    pointer-events: none;
+  }
+  .hearts-around span {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: pink;
+    transform: rotate(-45deg);
+    animation: pulseHeart 2s infinite;
+  }
+  .hearts-around span::before,
+  .hearts-around span::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: pink;
+    border-radius: 50%;
+  }
+  .hearts-around span::before {
+    top: -10px;
+    left: 0;
+  }
+  .hearts-around span::after {
+    top: 0;
+    left: 10px;
+  }
+  .hearts-around span:nth-child(1) {
+    top: 10px;
+    left: 60px;
+    animation-delay: 0s;
+  }
+  .hearts-around span:nth-child(2) {
+    top: 30px;
+    left: 10px;
+    animation-delay: 0.4s;
+  }
+  .hearts-around span:nth-child(3) {
+    top: 70px;
+    left: 20px;
+    animation-delay: 0.8s;
+  }
+  .hearts-around span:nth-child(4) {
+    top: 70px;
+    left: 90px;
+    animation-delay: 1.2s;
+  }
+  .hearts-around span:nth-child(5) {
+    top: 40px;
+    left: 100px;
+    animation-delay: 1.6s;
+  }
 
-    .resultado p {
-      margin: 5px 0;
+  @keyframes pulseHeart {
+    0%, 100% {
+      transform: scale(1) rotate(-45deg);
+      opacity: 1;
     }
+    50% {
+      transform: scale(1.3) rotate(-45deg);
+      opacity: 0.6;
+    }
+  }
 
-    @media screen and (max-width: 600px) {
-      .container {
-        margin: 20px;
-      }
+  /* Chuva de "LOVE" */
+  .love-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 20;
+  }
+  .love-word {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff4666;
+    user-select: none;
+    animation-name: fall, sway;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    animation-direction: normal, alternate;
+  }
+  @keyframes fall {
+    0% {
+      transform: translateY(-30px);
+      opacity: 0;
     }
-  </style>
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh);
+      opacity: 0;
+    }
+  }
+  @keyframes sway {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(15px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Texto final */
+  .final-text {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    color: #ff2e6d;
+    text-shadow: 0 0 5px #ff9ecb;
+    opacity: 0;
+    animation: fadeIn 3s ease forwards;
+    animation-delay: 12s;
+    z-index: 30;
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>🔍 Consulta de Dados Pessoais</h1>
-  </header>
 
-  <div class="container">
-    <label for="busca">Digite o CPF ou Nome Completo:</label>
-    <input type="text" id="busca" placeholder="Ex: 123.456.789-00 ou João Silva">
-    <button onclick="consultar()">Consultar</button>
+<div class="scene">
 
-    <div class="resultado" id="resultado">
-      <h3>Resultado da Consulta:</h3>
-      <p><strong>Nome:</strong> João Pedro da Silva</p>
-      <p><strong>CPF:</strong> 123.456.789-00</p>
-      <p><strong>RG:</strong> 12.345.678-9</p>
-      <p><strong>Nascimento:</strong> 15/04/1990</p>
-      <p><strong>Nome da Mãe:</strong> Maria Lúcia da Silva</p>
-      <p><strong>Nome do Pai:</strong> Carlos Alberto da Silva</p>
-      <p><strong>Endereço:</strong> Rua das Flores, 123 - Centro - SP</p>
-      <p><strong>Celular:</strong> (11) 91234-5678</p>
-      <p><strong>Email:</strong> joaopedro90@gmail.com</p>
-      <p><strong>Situação:</strong> Regular</p>
+  <div class="bear-male">
+    <div class="gun"></div>
+  </div>
+
+  <div class="bear-female">
+    <div class="hearts-around" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
     </div>
   </div>
 
-  <script>
-    // Função chamada ao clicar no botão "Consultar"
-    function consultar() {
-      const campo = document.getElementById("busca").value;
+</div>
 
-      if (campo.trim() === "") {
-        alert("Por favor, digite um CPF ou Nome.");
-        return;
-      }
+<div class="love-rain" aria-hidden="true"></div>
 
-      // Simula exibição dos dados após consulta
-      document.getElementById("resultado").style.display = "block";
+<div class="final-text">Love is in the air! ❤️</div>
+
+<script>
+  // Criar coração disparado animado
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    document.querySelector('.scene').appendChild(heart);
+
+    // Posiciona o coração perto da arma
+    heart.style.left = '120px';
+    heart.style.bottom = '80px';
+
+    // Remove após a animação acabar
+    heart.addEventListener('animationend', () => heart.remove());
+  }
+
+  // Dispara corações a cada 1.2s, por 6 vezes
+  let shots = 0;
+  const maxShots = 6;
+  const shootInterval = setInterval(() => {
+    if (shots >= maxShots) {
+      clearInterval(shootInterval);
+      startLoveRain();
+      return;
     }
-  </script>
+    createHeart();
+    shots++;
+  }, 1200);
+
+  // Mostrar e animar os corações em volta da ursa depois dos tiros
+  setTimeout(() => {
+    const heartsAround = document.querySelector('.hearts-around');
+    heartsAround.style.opacity = '1';
+  }, maxShots * 1200);
+
+  // Chuva de LOVE
+  function startLoveRain() {
+    const rainContainer = document.querySelector('.love-rain');
+    const count = 40;
+
+    for(let i=0; i<count; i++) {
+      const love = document.createElement('div');
+      love.className = 'love-word';
+      love.textContent = 'LOVE';
+
+      // posição horizontal aleatória
+      love.style.left = Math.random() * window.innerWidth + 'px';
+
+      // delay e duração aleatórios para animação para ficar mais natural
+      const fallDuration = 5 + Math.random() * 5;
+      const delay = Math.random() * 5;
+
+      love.style.animationDuration = `${fallDuration}s, 3s`;
+      love.style.animationDelay = `${delay}s, ${delay}s`;
+
+      rainContainer.appendChild(love);
+    }
+  }
+</script>
+
 </body>
 </html>
