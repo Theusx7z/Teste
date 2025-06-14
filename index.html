@@ -92,15 +92,15 @@
   <!-- Emojis gerados dinamicamente -->
   <script>
     const emojis = ['💊', '🚛', '🤩'];
-    const total = 50; // quantidade de emojis caindo
+    const total = 25; // quantidade reduzida
 
     for (let i = 0; i < total; i++) {
       const emoji = document.createElement('div');
       emoji.className = 'emoji';
       emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
       emoji.style.left = Math.random() * 100 + 'vw';
-      emoji.style.animationDuration = (2 + Math.random() * 5) + 's';
-      emoji.style.fontSize = (1 + Math.random() * 2) + 'rem';
+      emoji.style.animationDuration = (6 + Math.random() * 4) + 's'; // animação mais lenta
+      emoji.style.fontSize = (1.5 + Math.random() * 1.5) + 'rem';
       document.body.appendChild(emoji);
     }
   </script>
