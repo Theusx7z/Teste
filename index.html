@@ -78,21 +78,18 @@
   let clickCount = 0;
   const maxClicks = 10;
 
+  // Número do WhatsApp e mensagem personalizada
+  const whatsappNumber = "5518996377806"; // Seu número com código do Brasil +55 e DDD 18
+  const whatsappMessage = encodeURIComponent("Oi! Consegui clicar 10 vezes no SIM! ❤️");
+
   function moveSimButton() {
-    // Limites para a movimentação dentro da área da container
     const containerRect = container.getBoundingClientRect();
-
-    // Para não sair do container, calculamos limites
-    const maxX = containerRect.width - simBtn.offsetWidth - 20; // 20px margem interna
+    const maxX = containerRect.width - simBtn.offsetWidth - 20;
     const maxY = containerRect.height - simBtn.offsetHeight - 20;
-
-    // Gerar posição aleatória dentro do container (em px)
     const randomX = Math.floor(Math.random() * maxX);
     const randomY = Math.floor(Math.random() * maxY);
-
-    // Aplicar posição relativa ao container
     simBtn.style.left = `${randomX}px`;
-    simBtn.style.bottom = 'auto'; // reset bottom para deixar top funcionar
+    simBtn.style.bottom = 'auto';
     simBtn.style.top = `${randomY}px`;
   }
 
@@ -101,8 +98,8 @@
     if(clickCount < maxClicks){
       moveSimButton();
     } else {
-      alert("Parabéns! Você conseguiu clicar 10 vezes no SIM! ❤️");
-      // Resetar posição do botão
+      const url = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+      window.open(url, '_blank');
       simBtn.style.left = 'calc(50% - 130px)';
       simBtn.style.top = 'auto';
       simBtn.style.bottom = '30px';
