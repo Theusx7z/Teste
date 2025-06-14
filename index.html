@@ -4,45 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bob Do Theus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, #1e1e1e, #3c3c3c);
-      font-family: Arial, sans-serif;
-      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
     }
 
     h1 {
-      display: flex;
-      gap: 5px;
-      margin: 0 0 20px 0;
-    }
-
-    h1 span {
       font-size: 3em;
       color: #fff;
       text-shadow: 2px 2px 8px #ff4081;
-      animation: cair 1.5s ease-out forwards, brilho 2s infinite alternate, onda 1s infinite;
-      display: inline-block;
+      animation: cair 1.5s ease-out forwards, brilho 2s infinite alternate;
+      margin: 0 0 20px 0;
+      text-align: center;
     }
-
-    h1 span:nth-child(1) { animation-delay: 0s, 0s, 0s; }
-    h1 span:nth-child(2) { animation-delay: 0s, 0s, 0.1s; }
-    h1 span:nth-child(3) { animation-delay: 0s, 0s, 0.2s; }
-    h1 span:nth-child(4) { animation-delay: 0s, 0s, 0.3s; }
-    h1 span:nth-child(5) { animation-delay: 0s, 0s, 0.4s; }
-    h1 span:nth-child(6) { animation-delay: 0s, 0s, 0.5s; }
-    h1 span:nth-child(7) { animation-delay: 0s, 0s, 0.6s; }
-    h1 span:nth-child(8) { animation-delay: 0s, 0s, 0.7s; }
-    h1 span:nth-child(9) { animation-delay: 0s, 0s, 0.8s; }
-    h1 span:nth-child(10) { animation-delay: 0s, 0s, 0.9s; }
-    h1 span:nth-child(11) { animation-delay: 0s, 0s, 1s; }
 
     @keyframes cair {
       from {
@@ -64,15 +48,6 @@
       }
     }
 
-    @keyframes onda {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
     img {
       width: 70vw;
       max-width: 800px;
@@ -85,19 +60,50 @@
     img:hover {
       transform: scale(1.03);
     }
+
+    /* Emojis caindo */
+    .emoji {
+      position: absolute;
+      font-size: 2rem;
+      animation: cairEmoji linear infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes cairEmoji {
+      0% {
+        top: -50px;
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        top: 110%;
+        opacity: 0;
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
   </style>
 </head>
 <body>
 
-  <h1>
-    <span>B</span><span>o</span><span>b</span>
-    <span> </span>
-    <span>D</span><span>o</span>
-    <span> </span>
-    <span>T</span><span>h</span><span>e</span><span>u</span><span>s</span>
-  </h1>
-
+  <h1>Bob Do Theus</h1>
   <img src="global_truck_online_screenshot_20250613_222541.png" alt="Imagem Centralizada" />
+
+  <!-- Emojis gerados dinamicamente -->
+  <script>
+    const emojis = ['💊', '🚛', '🤩'];
+    const total = 50; // quantidade de emojis caindo
+
+    for (let i = 0; i < total; i++) {
+      const emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (2 + Math.random() * 5) + 's';
+      emoji.style.fontSize = (1 + Math.random() * 2) + 'rem';
+      document.body.appendChild(emoji);
+    }
+  </script>
 
 </body>
 </html>
