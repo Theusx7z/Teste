@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Brincadeira: Vai me da o Cu hoje?</title>
+<title>Brincadeira: Vamo fazer neném?</title>
 <style>
   body, html {
     height: 100%;
@@ -66,7 +66,7 @@
 <body>
 
 <div class="container">
-  <h1>Vai me da o Cu hoje?</h1>
+  <h1>Vamo fazer neném hoje?</h1>
   <button id="sim">Sim</button>
   <button id="nao">Não</button>
 </div>
@@ -78,9 +78,8 @@
   let clickCount = 0;
   const maxClicks = 10;
 
-  // Número do WhatsApp e mensagem personalizada
-  const whatsappNumber = "5518996377806"; // Seu número com código do Brasil +55 e DDD 18
-  const whatsappMessage = encodeURIComponent("*Me Chama De Lagartixa, e Me Taca Na Parede*");
+  const whatsappNumber = "5518996377806";
+  const whatsappMessage = encodeURIComponent("Oi! Consegui clicar 10 vezes no SIM! ❤️");
 
   function moveSimButton() {
     const containerRect = container.getBoundingClientRect();
@@ -109,6 +108,8 @@
 
   naoBtn.addEventListener('click', () => {
     alert("É pegadinha, vamos sim! 😄❤️");
+    const url = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+    window.open(url, '_blank');
   });
 </script>
 
