@@ -1,56 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Painel Clonners</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painel Hacker</title>
   <style>
     body {
-      background-color: #0d0d1a; /* fundo escuro */
-      color: #00ff00; /* texto verde terminal */
+      background-color: #0d0d0d;
+      color: #00ff88;
       font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #111;
+      text-align: center;
+      padding: 20px;
+      border-bottom: 2px solid #00ff88;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #00ff88;
+      font-size: 28px;
+    }
+
+    .painel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       padding: 20px;
     }
-    .titulo {
-      color: #ffcc00;
+
+    .bloco {
+      background-color: #1a1a1a;
+      border: 1px solid #00ff88;
+      border-radius: 6px;
+      margin: 10px;
+      width: 250px;
+      padding: 15px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .bloco:hover {
+      transform: scale(1.05);
+      background-color: #262626;
+    }
+
+    .bloco h3 {
+      margin-top: 0;
+      color: #00ffcc;
+    }
+
+    .bloco p {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .botao {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #00ff88;
+      color: #000;
+      text-decoration: none;
+      border-radius: 4px;
       font-weight: bold;
+      transition: background 0.3s;
     }
-    .menu {
-      margin-top: 20px;
-    }
-    .menu-item {
-      color: #00ffff;
-      margin: 5px 0;
-    }
-    .rodape {
-      color: red;
-      margin-top: 20px;
+
+    .botao:hover {
+      background-color: #00cc66;
     }
   </style>
 </head>
 <body>
 
-  <pre class="titulo">
-   _____   ____   ____ _   _ _   _ _____ ____  
-  |_   _| |  _ \ / ___| | | | \ | |_   _/ ___| 
-    | |   | | | | |   | | | |  \| | | | \___ \ 
-    | |   | |_| | |___| |_| | |\  | | |  ___) |
-    |_|   |____/ \____|\___/|_| \_| |_| |____/ 
-  </pre>
+<header>
+  <h1>🛠 Painel Hacker - Terminal Virtual</h1>
+</header>
 
-  <div class="menu">
-    <div class="menu-item">[01] Consulta de banco</div>
-    <div class="menu-item">[02] Consulta de bin</div>
-    <div class="menu-item">[03] Consulta de cartão</div>
-    <div class="menu-item">[04] Consulta de nome</div>
-    <div class="menu-item">[05] Consulta de cpf</div>
-    <div class="menu-item">[06] Consulta de covid19</div>
-    <div class="menu-item">[07] Consulta de email</div>
-    <!-- Adicione os outros itens conforme sua lista -->
+<div class="painel">
+
+  <div class="bloco" onclick="alert('Função: Consulta de Banco')">
+    <h3>Consulta de Banco</h3>
+    <p>Acessar dados bancários de demonstração.</p>
+    <a href="#" class="botao">Executar</a>
   </div>
 
-  <div class="rodape">
-    >>> Atualizar painel | Sair do script
+  <div class="bloco" onclick="alert('Função: Validador de CPF')">
+    <h3>Validador de CPF</h3>
+    <p>Valide números de CPF automaticamente.</p>
+    <a href="#" class="botao">Validar</a>
   </div>
+
+  <div class="bloco" onclick="alert('Função: Gerador de IP')">
+    <h3>Gerador de IP</h3>
+    <p>Simule IPs de redes para testes técnicos.</p>
+    <a href="#" class="botao">Gerar IP</a>
+  </div>
+
+  <div class="bloco" onclick="alert('Função: Painel Admin')">
+    <h3>Painel Admin</h3>
+    <p>Acesso total ao painel administrativo.</p>
+    <a href="#" class="botao">Acessar</a>
+  </div>
+
+  <div class="bloco" onclick="alert('Função: Exit do Script')">
+    <h3>Sair</h3>
+    <p>Finaliza a sessão atual do painel.</p>
+    <a href="#" class="botao">Sair</a>
+  </div>
+
+</div>
 
 </body>
 </html>
